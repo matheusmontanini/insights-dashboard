@@ -55,7 +55,7 @@ export function AppSidebar() {
   const collapsed = state === 'collapsed';
 
   return (
-    <Sidebar className={collapsed ? 'w-16' : 'w-64'} collapsible>
+    <Sidebar className={collapsed ? 'w-16' : 'w-64'} collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="text-zuvia-primary font-semibold">
