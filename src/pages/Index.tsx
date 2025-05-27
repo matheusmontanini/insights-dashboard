@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Building2, Users, TrendingUp, DollarSign, Shield, AlertTriangle, Info } from 'lucide-react';
 import KPICard from '@/components/dashboard/KPICard';
@@ -82,340 +81,165 @@ const Index = () => {
 
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-zuvia-gray">
-        {/* Header */}
-        <header className="bg-white border-b-2 border-zuvia-gray-light shadow-sm">
-          <div className="max-w-7xl mx-auto px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-zuvia-primary rounded-xl flex items-center justify-center">
-                  <Building2 className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold text-zuvia-primary">Zuvia</h1>
-                  <p className="text-sm text-gray-600">Dashboard de Investimentos</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-sm text-gray-600">Última atualização</p>
-                <p className="text-sm font-medium text-zuvia-primary">
-                  {new Date().toLocaleDateString('pt-BR')} às {new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
-                </p>
-              </div>
-            </div>
-          </div>
-        </header>
+      <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
+        <div>
+          <h1 className="text-3xl font-bold text-zuvia-primary mb-2">Dashboard Geral</h1>
+          <p className="text-gray-600">Visão geral de todos os indicadores da plataforma</p>
+        </div>
 
-        <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
-          {/* Filtros */}
-          <FilterSection
-            timeFilter={timeFilter}
-            onTimeFilterChange={setTimeFilter}
-            assetFilter={assetFilter}
-            onAssetFilterChange={setAssetFilter}
-            onDownloadReport={handleDownloadReport}
+        {/* Filtros */}
+        <FilterSection
+          timeFilter={timeFilter}
+          onTimeFilterChange={setTimeFilter}
+          assetFilter={assetFilter}
+          onAssetFilterChange={setAssetFilter}
+          onDownloadReport={handleDownloadReport}
+        />
+
+        {/* KPIs Principais */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+          <KPICard
+            title={
+              <div className="flex items-center gap-2">
+                <span>Contas Abertas</span>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Info className="h-4 w-4 text-gray-400 hover:text-gray-600 cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Total de contas criadas na plataforma</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+            }
+            value="2.347"
+            subtitle="Este mês"
+            trend="up"
+            trendValue="+12%"
+            icon={<Users className="h-6 w-6" />}
           />
-
-          {/* KPIs Principais */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-8 gap-6">
-            <KPICard
-              title={
-                <div className="flex items-center gap-2">
-                  <span>Contas Abertas</span>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Info className="h-4 w-4 text-gray-400 hover:text-gray-600 cursor-help" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Total de contas criadas na plataforma</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-              }
-              value="2.347"
-              subtitle="Este mês"
-              trend="up"
-              trendValue="+12%"
-              icon={<Users className="h-6 w-6" />}
-            />
-            <KPICard
-              title={
-                <div className="flex items-center gap-2">
-                  <span>Contas Ativas</span>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Info className="h-4 w-4 text-gray-400 hover:text-gray-600 cursor-help" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Contas com qualquer movimentação nos últimos 30 dias</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-              }
-              value="1.856"
-              subtitle="≥ R$ 1.000"
-              trend="up"
-              trendValue="+8%"
-              icon={<TrendingUp className="h-6 w-6" />}
-              color="success"
-            />
-            <KPICard
-              title={
-                <div className="flex items-center gap-2">
-                  <span>Contas Ativadas</span>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Info className="h-4 w-4 text-gray-400 hover:text-gray-600 cursor-help" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Contas que investiram a partir de R$ 1.000,00. Considerado apenas uma vez.</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-              }
-              value="1.623"
-              subtitle="Investiram R$ 1k+"
-              trend="up"
-              trendValue="+15%"
-              icon={<TrendingUp className="h-6 w-6" />}
-              color="success"
-            />
-            <KPICard
-              title="Taxa de Ativação"
-              value="79.1%"
-              subtitle="Conversão"
-              trend="neutral"
-              icon={<TrendingUp className="h-6 w-6" />}
-            />
-            <KPICard
-              title={
-                <div className="flex items-center gap-2">
-                  <span>Aportes</span>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Info className="h-4 w-4 text-gray-400 hover:text-gray-600 cursor-help" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Depósitos de investidores</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-              }
-              value="R$ 3.8M"
-              subtitle="Este mês"
-              trend="up"
-              trendValue="+22%"
-              icon={<DollarSign className="h-6 w-6" />}
-              color="success"
-            />
-            <KPICard
-              title="Total Captado"
-              value="R$ 4.5M"
-              subtitle="Este mês"
-              trend="up"
-              trendValue="+25%"
-              icon={<DollarSign className="h-6 w-6" />}
-              color="success"
-            />
-            <KPICard
-              title="Volume Sob Gestão"
-              value="R$ 127M"
-              subtitle="AUM atual"
-              trend="up"
-              trendValue="+15%"
-              icon={<Building2 className="h-6 w-6" />}
-            />
-            <KPICard
-              title="Receita Total"
-              value="R$ 720K"
-              subtitle="Este mês"
-              trend="up"
-              trendValue="+18%"
-              icon={<DollarSign className="h-6 w-6" />}
-              color="success"
-            />
-          </div>
-
-          {/* Seção de Contas de Investidores */}
-          <div>
-            <h2 className="text-xl font-bold text-zuvia-primary mb-4">Visão de Contas de Investidores</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <ChartCard
-                title="Evolução de Contas (Abertas vs Ativas)"
-                type="line"
-                data={evolutionData}
-                height={350}
-              />
-              <div className="space-y-4">
-                <KPICard
-                  title="Crescimento Mensal"
-                  value="+347"
-                  subtitle="Novas contas abertas"
-                  trend="up"
-                  trendValue="+12% vs mês anterior"
-                  color="success"
-                />
-                <KPICard
-                  title="Crescimento em Receita"
-                  value="+R$ 125K"
-                  subtitle="Receita mensal"
-                  trend="up"
-                  trendValue="+18% vs mês anterior"
-                  color="success"
-                />
-                <KPICard
-                  title="Crescimento em Aportes"
-                  value="+R$ 850K"
-                  subtitle="Depósitos mensais"
-                  trend="up"
-                  trendValue="+22% vs mês anterior"
-                  color="success"
-                />
-                <KPICard
-                  title="Ticket Médio"
-                  value="R$ 15.750"
-                  subtitle="Por conta ativa"
-                  trend="up"
-                  trendValue="+5%"
-                />
+          <KPICard
+            title={
+              <div className="flex items-center gap-2">
+                <span>Contas Ativas</span>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Info className="h-4 w-4 text-gray-400 hover:text-gray-600 cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Contas com qualquer movimentação nos últimos 30 dias</p>
+                  </TooltipContent>
+                </Tooltip>
               </div>
-            </div>
-          </div>
-
-          {/* Captação e Performance */}
-          <div>
-            <h2 className="text-xl font-bold text-zuvia-primary mb-4">Captação e Performance dos Ativos</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <ChartCard
-                title="Evolução da Captação Mensal"
-                type="bar"
-                data={captationData}
-                height={350}
-              />
-              <ChartCard
-                title="Concentração de Risco por Emissor"
-                type="pie"
-                data={riskConcentrationData}
-                height={350}
-              />
-            </div>
-          </div>
-
-          {/* Receita */}
-          <div>
-            <h2 className="text-xl font-bold text-zuvia-primary mb-4">Receita e Saúde Financeira</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <ChartCard
-                title="Receita por Fonte"
-                type="pie"
-                data={revenueData}
-                height={350}
-              />
-              <div className="space-y-4">
-                <KPICard
-                  title="Margem de Lucro"
-                  value="34.2%"
-                  subtitle="Margem operacional"
-                  trend="up"
-                  trendValue="+2.1%"
-                  color="success"
-                />
-                <KPICard
-                  title="ROI Médio dos Ativos"
-                  value="12.8%"
-                  subtitle="Retorno anualizado"
-                  trend="up"
-                  trendValue="+0.5%"
-                  color="success"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Performance e Alertas */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <h2 className="text-xl font-bold text-zuvia-primary">Performance dos Ativos</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <KPICard
-                  title="Prazo Médio"
-                  value="18 meses"
-                  subtitle="Vencimento médio"
-                  color="primary"
-                />
-                <KPICard
-                  title="Taxa de Inadimplência"
-                  value="1.2%"
-                  subtitle="Histórico 12 meses"
-                  trend="down"
-                  trendValue="-0.3%"
-                  color="success"
-                />
-              </div>
-              <KPICard
-                title="Ativos com Atraso"
-                value="3"
-                subtitle="Requer atenção"
-                trend="neutral"
-                icon={<AlertTriangle className="h-6 w-6" />}
-                color="warning"
-              />
-            </div>
-
-            <div>
-              <h2 className="text-xl font-bold text-zuvia-primary mb-4">Compliance e Monitoramento</h2>
-              <div className="space-y-4">
-                <KPICard
-                  title="Transações Alto Valor"
-                  value="127"
-                  subtitle="Acima de R$ 50k (este mês)"
-                  icon={<Shield className="h-6 w-6" />}
-                  color="warning"
-                />
-                <div className="grid grid-cols-3 gap-2">
-                  <KPICard
-                    title="KYC Aprovados"
-                    value="1.845"
-                    color="success"
-                  />
-                  <KPICard
-                    title="Pendentes"
-                    value="156"
-                    color="warning"
-                  />
-                  <KPICard
-                    title="Reprovados"
-                    value="23"
-                    color="danger"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Tabela de Compliance */}
-          <StatusTable
-            title="Monitoramento de Compliance - Transações Recentes"
-            data={complianceData}
+            }
+            value="1.856"
+            subtitle="≥ R$ 1.000"
+            trend="up"
+            trendValue="+8%"
+            icon={<TrendingUp className="h-6 w-6" />}
+            color="success"
           />
+          <KPICard
+            title={
+              <div className="flex items-center gap-2">
+                <span>Contas Ativadas</span>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Info className="h-4 w-4 text-gray-400 hover:text-gray-600 cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Contas que investiram a partir de R$ 1.000,00. Considerado apenas uma vez.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+            }
+            value="1.623"
+            subtitle="Investiram R$ 1k+"
+            trend="up"
+            trendValue="+15%"
+            icon={<TrendingUp className="h-6 w-6" />}
+            color="success"
+          />
+          <KPICard
+            title="Total Captado"
+            value="R$ 4.5M"
+            subtitle="Este mês"
+            trend="up"
+            trendValue="+25%"
+            icon={<DollarSign className="h-6 w-6" />}
+            color="success"
+          />
+          <KPICard
+            title="Volume Sob Gestão"
+            value="R$ 127M"
+            subtitle="AUM atual"
+            trend="up"
+            trendValue="+15%"
+            icon={<Building2 className="h-6 w-6" />}
+          />
+          <KPICard
+            title="Receita Total"
+            value="R$ 720K"
+            subtitle="Este mês"
+            trend="up"
+            trendValue="+18%"
+            icon={<DollarSign className="h-6 w-6" />}
+            color="success"
+          />
+        </div>
 
-          {/* Alertas COAF */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <KPICard
-              title="Volume Reportado COAF"
-              value="R$ 2.8M"
-              subtitle="Este mês"
-              icon={<Shield className="h-6 w-6" />}
-              color="primary"
-            />
-            <KPICard
-              title="Alertas PLD/FT"
-              value="7"
-              subtitle="Transações suspeitas identificadas"
-              trend="neutral"
-              icon={<AlertTriangle className="h-6 w-6" />}
-              color="danger"
-            />
+        {/* Resumo por Seções */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <ChartCard
+            title="Evolução de Contas (Abertas vs Ativas)"
+            type="line"
+            data={evolutionData}
+            height={350}
+          />
+          <ChartCard
+            title="Evolução da Captação Mensal"
+            type="bar"
+            data={captationData}
+            height={350}
+          />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <ChartCard
+            title="Receita por Fonte"
+            type="pie"
+            data={revenueData}
+            height={350}
+          />
+          <ChartCard
+            title="Concentração de Risco por Emissor"
+            type="pie"
+            data={riskConcentrationData}
+            height={350}
+          />
+        </div>
+
+        {/* Links para seções específicas */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="p-6 bg-white border-2 border-zuvia-primary/20 rounded-2xl hover:shadow-md transition-shadow cursor-pointer">
+            <Users className="h-8 w-8 text-zuvia-primary mb-4" />
+            <h3 className="text-lg font-semibold text-zuvia-primary mb-2">Gestão de Contas</h3>
+            <p className="text-gray-600 text-sm">Acesse a análise completa das contas de investidores</p>
+          </div>
+          <div className="p-6 bg-white border-2 border-zuvia-primary/20 rounded-2xl hover:shadow-md transition-shadow cursor-pointer">
+            <TrendingUp className="h-8 w-8 text-zuvia-primary mb-4" />
+            <h3 className="text-lg font-semibold text-zuvia-primary mb-2">Performance</h3>
+            <p className="text-gray-600 text-sm">Visualize a performance da carteira de investimentos</p>
+          </div>
+          <div className="p-6 bg-white border-2 border-zuvia-primary/20 rounded-2xl hover:shadow-md transition-shadow cursor-pointer">
+            <DollarSign className="h-8 w-8 text-zuvia-primary mb-4" />
+            <h3 className="text-lg font-semibold text-zuvia-primary mb-2">Financeiro</h3>
+            <p className="text-gray-600 text-sm">Análise detalhada da receita e saúde financeira</p>
+          </div>
+          <div className="p-6 bg-white border-2 border-zuvia-primary/20 rounded-2xl hover:shadow-md transition-shadow cursor-pointer">
+            <Shield className="h-8 w-8 text-zuvia-primary mb-4" />
+            <h3 className="text-lg font-semibold text-zuvia-primary mb-2">Compliance</h3>
+            <p className="text-gray-600 text-sm">Monitoramento de conformidade e prevenção</p>
           </div>
         </div>
       </div>
