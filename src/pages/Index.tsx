@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Building2, Users, TrendingUp, DollarSign, Shield, AlertTriangle, Info } from 'lucide-react';
 import KPICard from '@/components/dashboard/KPICard';
@@ -11,68 +12,40 @@ const Index = () => {
   const [assetFilter, setAssetFilter] = useState('all');
 
   // Dados simulados para os gráficos
-  const evolutionData = [
-    { name: 'Jan', value: 1200, value2: 950 },
-    { name: 'Fev', value: 1450, value2: 1100 },
-    { name: 'Mar', value: 1650, value2: 1250 },
-    { name: 'Abr', value: 1800, value2: 1400 },
-    { name: 'Mai', value: 2100, value2: 1650 },
-    { name: 'Jun', value: 2350, value2: 1850 },
+  const volumeEvolutionData = [
+    { name: 'Jan', value: 85000000 },
+    { name: 'Fev', value: 92000000 },
+    { name: 'Mar', value: 105000000 },
+    { name: 'Abr', value: 118000000 },
+    { name: 'Mai', value: 125000000 },
+    { name: 'Jun', value: 127000000 },
   ];
 
-  const captationData = [
-    { name: 'Jan', value: 2500000 },
-    { name: 'Fev', value: 3200000 },
-    { name: 'Mar', value: 2800000 },
-    { name: 'Abr', value: 4100000 },
-    { name: 'Mai', value: 3600000 },
-    { name: 'Jun', value: 4500000 },
+  const depositsEvolutionData = [
+    { name: 'Jan', value: 12500000 },
+    { name: 'Fev', value: 15200000 },
+    { name: 'Mar', value: 18800000 },
+    { name: 'Abr', value: 21100000 },
+    { name: 'Mai', value: 19600000 },
+    { name: 'Jun', value: 23500000 },
   ];
 
-  const revenueData = [
-    { name: 'Setup', value: 125000 },
-    { name: 'Administração', value: 320000 },
-    { name: 'Performance', value: 180000 },
-    { name: 'Mercado Sec.', value: 95000 },
+  const withdrawalsEvolutionData = [
+    { name: 'Jan', value: 3200000 },
+    { name: 'Fev', value: 2800000 },
+    { name: 'Mar', value: 4100000 },
+    { name: 'Abr', value: 3600000 },
+    { name: 'Mai', value: 5200000 },
+    { name: 'Jun', value: 4800000 },
   ];
 
-  const riskConcentrationData = [
-    { name: 'Banco ABC', value: 35 },
-    { name: 'Banco XYZ', value: 28 },
-    { name: 'Empresa DEF', value: 20 },
-    { name: 'Outros', value: 17 },
-  ];
-
-  // Dados da tabela de compliance - Fixed TypeScript error
-  const complianceData = [
-    {
-      id: '1',
-      name: 'João Silva',
-      status: 'success' as const,
-      value: 'R$ 150.000',
-      details: 'KYC Aprovado'
-    },
-    {
-      id: '2',
-      name: 'Maria Santos',
-      status: 'pending' as const,
-      value: 'R$ 75.000',
-      details: 'Documentos Pendentes'
-    },
-    {
-      id: '3',
-      name: 'Pedro Costa',
-      status: 'warning' as const,
-      value: 'R$ 120.000',
-      details: 'Em Análise PLD'
-    },
-    {
-      id: '4',
-      name: 'Ana Oliveira',
-      status: 'danger' as const,
-      value: 'R$ 200.000',
-      details: 'Transação Suspeita'
-    },
+  const totalInvestedEvolutionData = [
+    { name: 'Jan', value: 78000000 },
+    { name: 'Fev', value: 84500000 },
+    { name: 'Mar', value: 99200000 },
+    { name: 'Abr', value: 116700000 },
+    { name: 'Mai', value: 131100000 },
+    { name: 'Jun', value: 149800000 },
   ];
 
   const handleDownloadReport = () => {
@@ -83,8 +56,8 @@ const Index = () => {
     <TooltipProvider>
       <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-zuvia-primary mb-2">Dashboard Geral</h1>
-          <p className="text-gray-600">Visão geral de todos os indicadores da plataforma</p>
+          <h1 className="text-3xl font-bold text-zuvia-primary mb-2">Dashboard Financeiro</h1>
+          <p className="text-gray-600">Visão geral dos indicadores financeiros da plataforma</p>
         </div>
 
         {/* Filtros */}
@@ -96,79 +69,8 @@ const Index = () => {
           onDownloadReport={handleDownloadReport}
         />
 
-        {/* KPIs Principais */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
-          <KPICard
-            title={
-              <div className="flex items-center gap-2">
-                <span>Contas Abertas</span>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Info className="h-4 w-4 text-gray-400 hover:text-gray-600 cursor-help" />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Total de contas criadas na plataforma</p>
-                  </TooltipContent>
-                </Tooltip>
-              </div>
-            }
-            value="2.347"
-            subtitle="Este mês"
-            trend="up"
-            trendValue="+12%"
-            icon={<Users className="h-6 w-6" />}
-          />
-          <KPICard
-            title={
-              <div className="flex items-center gap-2">
-                <span>Contas Ativas</span>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Info className="h-4 w-4 text-gray-400 hover:text-gray-600 cursor-help" />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Contas com qualquer movimentação nos últimos 30 dias</p>
-                  </TooltipContent>
-                </Tooltip>
-              </div>
-            }
-            value="1.856"
-            subtitle="≥ R$ 1.000"
-            trend="up"
-            trendValue="+8%"
-            icon={<TrendingUp className="h-6 w-6" />}
-            color="success"
-          />
-          <KPICard
-            title={
-              <div className="flex items-center gap-2">
-                <span>Contas Ativadas</span>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Info className="h-4 w-4 text-gray-400 hover:text-gray-600 cursor-help" />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Contas que investiram a partir de R$ 1.000,00. Considerado apenas uma vez.</p>
-                  </TooltipContent>
-                </Tooltip>
-              </div>
-            }
-            value="1.623"
-            subtitle="Investiram R$ 1k+"
-            trend="up"
-            trendValue="+15%"
-            icon={<TrendingUp className="h-6 w-6" />}
-            color="success"
-          />
-          <KPICard
-            title="Total Captado"
-            value="R$ 4.5M"
-            subtitle="Este mês"
-            trend="up"
-            trendValue="+25%"
-            icon={<DollarSign className="h-6 w-6" />}
-            color="success"
-          />
+        {/* KPIs Financeiros */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <KPICard
             title="Volume Sob Gestão"
             value="R$ 127M"
@@ -178,43 +80,61 @@ const Index = () => {
             icon={<Building2 className="h-6 w-6" />}
           />
           <KPICard
-            title="Receita Total"
-            value="R$ 720K"
+            title="Depósitos"
+            value="R$ 23.5M"
             subtitle="Este mês"
             trend="up"
-            trendValue="+18%"
+            trendValue="+20%"
+            icon={<TrendingUp className="h-6 w-6" />}
+            color="success"
+          />
+          <KPICard
+            title="Saques"
+            value="R$ 4.8M"
+            subtitle="Este mês"
+            trend="down"
+            trendValue="-8%"
+            icon={<AlertTriangle className="h-6 w-6" />}
+            color="warning"
+          />
+          <KPICard
+            title="Total Investido"
+            value="R$ 149.8M"
+            subtitle="Acumulado"
+            trend="up"
+            trendValue="+14%"
             icon={<DollarSign className="h-6 w-6" />}
             color="success"
           />
         </div>
 
-        {/* Resumo por Seções */}
+        {/* Gráficos de Evolução */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <ChartCard
-            title="Evolução de Contas (Abertas vs Ativas)"
+            title="Evolução do Volume Sob Gestão"
             type="line"
-            data={evolutionData}
+            data={volumeEvolutionData}
             height={350}
           />
           <ChartCard
-            title="Evolução da Captação Mensal"
+            title="Evolução dos Depósitos Mensais"
             type="bar"
-            data={captationData}
+            data={depositsEvolutionData}
             height={350}
           />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <ChartCard
-            title="Receita por Fonte"
-            type="pie"
-            data={revenueData}
+            title="Evolução dos Saques Mensais"
+            type="bar"
+            data={withdrawalsEvolutionData}
             height={350}
           />
           <ChartCard
-            title="Concentração de Risco por Emissor"
-            type="pie"
-            data={riskConcentrationData}
+            title="Evolução do Total Investido"
+            type="line"
+            data={totalInvestedEvolutionData}
             height={350}
           />
         </div>
