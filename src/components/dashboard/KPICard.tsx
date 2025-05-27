@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 
 interface KPICardProps {
-  title: string;
+  title: string | React.ReactNode;
   value: string;
   subtitle?: string;
   trend?: 'up' | 'down' | 'neutral';
