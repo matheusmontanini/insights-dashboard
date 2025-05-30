@@ -7,7 +7,8 @@ import {
   TrendingUp,
   DollarSign,
   Shield,
-  Home
+  Home,
+  Building
 } from 'lucide-react';
 import {
   Sidebar,
@@ -41,6 +42,11 @@ const menuItems = [
     title: 'Financeiro',
     url: '/financial',
     icon: DollarSign,
+  },
+  {
+    title: 'Emissores',
+    url: '/issuers',
+    icon: Building,
   },
   {
     title: 'Compliance',

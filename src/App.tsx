@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Accounts from "./pages/Accounts";
 import Performance from "./pages/Performance";
 import Financial from "./pages/Financial";
+import Issuers from "./pages/Issuers";
 import Compliance from "./pages/Compliance";
 import NotFound from "./pages/NotFound";
 
@@ -28,6 +29,7 @@ const App = () => (
               <Route path="/accounts" element={<Accounts />} />
               <Route path="/performance" element={<Performance />} />
               <Route path="/financial" element={<Financial />} />
+              <Route path="/issuers" element={<Issuers />} />
               <Route path="/compliance" element={<Compliance />} />
             </Route>
             <Route path="*" element={<NotFound />} />
