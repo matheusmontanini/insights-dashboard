@@ -12,6 +12,7 @@ import Performance from "./pages/Performance";
 import Financial from "./pages/Financial";
 import Issuers from "./pages/Issuers";
 import Compliance from "./pages/Compliance";
+import TVDashboard from "./pages/TVDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
               <Route path="/issuers" element={<Issuers />} />
               <Route path="/compliance" element={<Compliance />} />
             </Route>
+            <Route path="/tv-dashboard" element={<TVDashboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </SidebarProvider>

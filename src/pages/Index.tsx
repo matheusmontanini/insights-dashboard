@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
-import { Building2, Users, TrendingUp, DollarSign, Shield, AlertTriangle, Info } from 'lucide-react';
+import { Building2, Users, TrendingUp, DollarSign, Shield, AlertTriangle, Info, Tv } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import KPICard from '@/components/dashboard/KPICard';
 import FilterSection from '@/components/dashboard/FilterSection';
 import ChartCard from '@/components/dashboard/ChartCard';
@@ -55,9 +55,18 @@ const Index = () => {
   return (
     <TooltipProvider>
       <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
-        <div>
-          <h1 className="text-3xl font-bold text-zuvia-primary mb-2">Dashboard Financeiro</h1>
-          <p className="text-gray-600">Visão geral dos indicadores financeiros da plataforma</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-zuvia-primary mb-2">Dashboard Financeiro</h1>
+            <p className="text-gray-600">Visão geral dos indicadores financeiros da plataforma</p>
+          </div>
+          <Link 
+            to="/tv-dashboard"
+            className="flex items-center space-x-2 bg-zuvia-primary text-white px-6 py-3 rounded-xl hover:bg-zuvia-primary/90 transition-colors"
+          >
+            <Tv className="h-5 w-5" />
+            <span>Dashboard TV</span>
+          </Link>
         </div>
 
         {/* Filtros */}
