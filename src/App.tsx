@@ -8,6 +8,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import Accounts from "./pages/Accounts";
+import Customers from "./pages/Customers";
 import Performance from "./pages/Performance";
 import Financial from "./pages/Financial";
 import Issuers from "./pages/Issuers";
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/" element={<Layout />}>
               <Route index element={<Index />} />
               <Route path="/accounts" element={<Accounts />} />
+              <Route path="/customers" element={<Customers />} />
               <Route path="/performance" element={<Performance />} />
               <Route path="/financial" element={<Financial />} />
               <Route path="/issuers" element={<Issuers />} />

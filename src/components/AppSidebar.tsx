@@ -8,7 +8,8 @@ import {
   DollarSign,
   Shield,
   Home,
-  Building
+  Building,
+  UserCheck
 } from 'lucide-react';
 import {
   Sidebar,
@@ -32,6 +33,11 @@ const menuItems = [
     title: 'Contas',
     url: '/accounts',
     icon: Users,
+  },
+  {
+    title: 'Clientes',
+    url: '/customers',
+    icon: UserCheck,
   },
   {
     title: 'Performance',
